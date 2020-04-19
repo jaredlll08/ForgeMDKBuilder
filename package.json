@@ -8,8 +8,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "archiver": "^4.0.1",
+    "axios": "^0.19.2",
+    "downloadjs": "^1.4.7",
+    "js-file-download": "^0.4.11",
+    "ncp": "^2.0.0",
     "next": "9.3.5",
+    "node-fetch": "latest",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "replace": "^1.1.5",
+    "semver-sort": "^0.0.4",
+    "uuid": "^7.0.3",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.2",
+    "autoprefixer": "^9.7.6",
+    "tailwindcss": "^1.2.0"
   }
 }
