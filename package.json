@@ -20,7 +20,8 @@
     "replace": "^1.1.5",
     "semver-sort": "^0.0.4",
     "uuid": "^7.0.3",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "fs-extra": "latest"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
