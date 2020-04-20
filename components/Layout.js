@@ -9,7 +9,7 @@ const {useContext} = require("react");
 export default function Layout({children}) {
     const theme = useContext(ThemeContext);
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="flex flex-col" style={{minHeight: "100vh"}}>
             <header>
                 <NavBar/>
             </header>
