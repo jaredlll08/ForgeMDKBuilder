@@ -9,19 +9,16 @@
   },
   "dependencies": {
     "archiver": "^4.0.1",
-    "axios": "^0.19.2",
-    "downloadjs": "^1.4.7",
-    "js-file-download": "^0.4.11",
-    "ncp": "^2.0.0",
+    "fs-extra": "latest",
     "next": "9.3.5",
+    "next-ga": "^2.3.4",
     "node-fetch": "latest",
+    "nookies": "^2.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "replace": "^1.1.5",
-    "semver-sort": "^0.0.4",
     "uuid": "^7.0.3",
-    "xml2js": "^0.4.23",
-    "fs-extra": "latest"
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",

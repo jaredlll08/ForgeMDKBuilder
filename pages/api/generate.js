@@ -39,6 +39,13 @@ export default async (req, res) => {
             silent: true,
         });
         replace({
+            regex: "{{forgeloader}}",
+            replacement: data.forgeVersion.split("-")[1].split("\.")[0],
+            paths: [`${dir}/${key}`],
+            recursive: true,
+            silent: true,
+        });
+        replace({
             regex: "{{modid}}",
             replacement: data.modid,
             paths: [`${dir}/${key}`],
@@ -86,14 +93,116 @@ export default async (req, res) => {
                 silent: true,
             });
         }
-
         replace({
-            regex: "{{displayname}}",
-            replacement: data.displayName,
+            regex: "{{group}}",
+            replacement: data.group,
             paths: [`${dir}/${key}`],
             recursive: true,
             silent: true,
         });
+        replace({
+            regex: "{{archiveName}}",
+            replacement: data.archiveName,
+            paths: [`${dir}/${key}`],
+            recursive: true,
+            silent: true,
+        });
+        replace({
+            regex: "{{vendor}}",
+            replacement: `${data.vendor}`,
+            paths: [`${dir}/${key}`],
+            recursive: true,
+            silent: true,
+        });
+        if (data.maven === "true") {
+
+            replace({
+                regex: "{{mavenplugin}}",
+                replacement: `\napply plugin: 'maven-publish'`,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+            replace({
+                regex: "{{mavenversion}}",
+                replacement: `\nif (System.getenv('BUILD_NUMBER') != null) {\nversion += "." + System.getenv('BUILD_NUMBER');\n}`,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+            replace({
+                regex: "{{mavenblock}}",
+                replacement: `\n${await fs.readFileSync(`./templates/maven_${templateStr}.gradle`, `utf8`)}`,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+
+        } else {
+            replace({
+                regex: "{{mavenplugin}}",
+                replacement: ``,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+            replace({
+                regex: "{{mavenversion}}",
+                replacement: ``,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+            replace({
+                regex: "{{mavenblock}}",
+                replacement: ``,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+        }
+        if (data.loggingMarkers === "true") {
+            replace({
+                regex: "{{loggingmarkers}}",
+                replacement: `\n            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'`,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+        } else {
+            replace({
+                regex: "{{loggingmarkers}}",
+                replacement: ``,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+        }
+        if (data.debugLogging === "true") {
+            replace({
+                regex: "{{debuglogging}}",
+                replacement: `\n            property 'forge.logging.console.level', 'debug'`,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+        } else {
+            replace({
+                regex: "{{debuglogging}}",
+                replacement: ``,
+                paths: [`${dir}/${key}`],
+                recursive: true,
+                silent: true,
+            });
+        }
+        replace({
+            regex: "{{description}}",
+            replacement: `${data.description}`,
+            paths: [`${dir}/${key}`],
+            recursive: true,
+            silent: true,
+        });
+
         let archive = archiver('zip', {
             zlib: {level: 9}
         });
@@ -101,7 +210,7 @@ export default async (req, res) => {
             throw err;
         });
         res.setHeader('Content-Type', 'application/zip');
-        res.setHeader('Content-disposition', 'attachment; filename=FMDKB.zip');
+        res.setHeader('Content-disposition', `attachment; filename=${data.modid}-${data.mcVersion}-MDK.zip`);
 
         archive.pipe(res);
         archive.directory(`${dir}/${key}`, false);

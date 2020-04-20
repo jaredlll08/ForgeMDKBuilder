@@ -1,10 +1,10 @@
 module.exports = {
     theme: {
         extend: {},
+        minHeight: {
+            '32': '8rem'
+        }
     },
-    variants: {
-        backgroundColor: ['responsive', 'hover', 'focus', 'disabled'],
-        opacity: ['responsive', 'hover', 'focus', 'disabled'],
-    },
+    variants: {},
     plugins: [],
 };
