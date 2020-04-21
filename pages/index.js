@@ -161,9 +161,7 @@ export default function Home({minecraftVersions, mcpData, forgeVersions, themeVa
                         <div className={"text-center border-b border-gray-400 mb-2 px-4 py-2"}>
                             <h1 className={"text-2xl text-center"}>Welcome to the Forge MDK Builder!</h1>
                             <p className={`w-5/6 mx-auto text-xl `}>This website will help you quickly setup a Minecraft
-                                Forge Development Environment without having to manually remove some of the bloat
-                                included
-                                with the Forge provided MDKs</p>
+                                Forge Development Environment without having to manually remove some of the defaults provided by the Forge provided MDKs such as the debug logging and maven block</p>
                         </div>
                         <div id={"environmentOptions"}>
                             <h1 className={"text-2xl text-center"}>Environment Options</h1>
