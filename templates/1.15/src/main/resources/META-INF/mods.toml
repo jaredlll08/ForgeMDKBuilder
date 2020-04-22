@@ -5,9 +5,9 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 modId="{{modid}}"
 version="${file.jarVersion}"
 displayName="{{displayname}}"{{credits}}{{authors}}
-updateJSONURL=""
-displayURL=""
-logoFile=""
+#updateJSONURL=""
+#displayURL=""
+#logoFile=""
 description='''
 {{description}}
 '''
